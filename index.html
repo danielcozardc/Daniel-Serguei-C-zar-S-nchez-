@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141214">
+  <meta name="description" content="DAVAI Combat Sports. Equipamiento y ropa para quienes entrenan con honor y pelean con valor.">
+  <title>DAVAI Combat Sports — Honor · Valor · Respeto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#141214;--panel:#1d1b1d;--cream:#efe9e1;--muted:#a9a19b;--red:#d7262f;--line:#393435}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;background:var(--bg);color:var(--cream);font-family:Inter,sans-serif;font-size:15px;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button:focus-visible,a:focus-visible{outline:2px solid #fff;outline-offset:4px}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    img[hidden]{display:none}
+    h1,h2,h3,p{margin:0}
+    h1,h2,h3,.condensed{font-family:Oswald,sans-serif;text-transform:uppercase;line-height:1.05}
+    .red,.brand-v{color:var(--red)}
+    .meaning .brand-v,.marquee .brand-v,.button .brand-v{background:var(--bg);color:var(--red)}
+    .wrap{width:min(1360px,calc(100% - 96px));margin:auto}
+    .eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .muted{color:var(--muted)}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:54px;padding:0 27px;background:var(--red);color:#fff;border:1px solid var(--red);clip-path:polygon(0 0,100% 0,100% calc(100% - 11px),calc(100% - 11px) 100%,0 100%);font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;transition:background .2s,border-color .2s}
+    .button:hover{background:#b91e27;border-color:#b91e27}
+    .button.outline{background:transparent;border-color:#766e6c;color:var(--cream)}
+    .button.outline:hover{border-color:var(--cream)}
+    .arrow{font-size:18px;line-height:1}
+    .site-header{position:fixed;z-index:20;top:0;left:0;right:0;background:rgba(20,18,20,.96);border-bottom:1px solid #302c2e}
+    .header-inner{height:78px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+    .logo{display:flex;align-items:center;gap:10px;font:700 27px/1 Oswald,sans-serif;letter-spacing:.025em;white-space:nowrap}
+    .logo-mark{font-size:37px;font-style:italic;color:var(--red)}
+    .nav{display:flex;align-items:center;gap:35px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .nav a:hover{color:var(--red)}
+    .header-cta{min-height:43px;padding:0 20px}
+    main{padding-top:78px}
+    .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero-inner{min-height:650px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:50px;padding:95px 0 100px}
+    .hero-copy{position:relative;z-index:1}
+    .hero .eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:26px}
+    .dot{width:7px;height:7px;background:var(--red);border-radius:50%}
+    .hero h1{font-size:clamp(58px,7vw,106px);letter-spacing:-.035em;line-height:.98}
+    .hero-copy>p{max-width:470px;margin-top:27px;color:#bdb5af;font-size:15px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+    .hero-art{position:relative;transform:rotate(3deg);aspect-ratio:1/1;max-height:520px;box-shadow:0 25px 75px #0008}
+    .image-fallback{position:relative;overflow:hidden;background:#242123;color:#8a8080;display:flex;align-items:center;justify-content:center;text-align:center}
+    .image-fallback>span{padding:20px;font:500 17px Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+    .image-fallback img{position:absolute;inset:0}
+    .hero-art:after{content:"";position:absolute;inset:12px;border:1px solid #ffffff24;pointer-events:none}
+    .hero-index{position:absolute;bottom:25px;left:0;color:#706968;font-size:10px;letter-spacing:.2em}
+    .meaning{background:var(--red)}
+    .meaning-inner{display:grid;grid-template-columns:1fr 1.4fr auto;align-items:center;gap:40px;padding:42px 0}
+    .meaning h2{font-size:clamp(31px,3.8vw,52px)}
+    .meaning p{max-width:540px;font-size:14px;color:#ffe9e8}
+    .timer{font:500 clamp(54px,6vw,82px)/1 Oswald,sans-serif;letter-spacing:-.04em;opacity:.5}
+    .section{padding:120px 0}
+    .section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:42px}
+    .section-heading h2{font-size:clamp(46px,6vw,76px);letter-spacing:-.025em}
+    .section-heading .eyebrow{margin-bottom:13px;color:var(--red)}
+    .section-note{max-width:300px;color:var(--muted);font-size:13px}
+    .equipment-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .equipment-card{min-width:0}
+    .equipment-image{aspect-ratio:4/5}
+    .equipment-card .tag{display:inline-block;margin-top:18px;color:var(--red);font-size:9px;letter-spacing:.12em;font-weight:800;text-transform:uppercase}
+    .equipment-card h3{margin-top:7px;font-size:23px}
+    .equipment-card p{margin-top:8px;font-size:12px;color:var(--muted)}
+    .clothing{background:#1b191b;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .collection-heading{align-items:center}
+    .collection-heading h2{font-size:clamp(52px,7vw,90px)}
+    .collection-subtitle{margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--muted)}
+    .tabs{display:flex;border-bottom:1px solid #5b5352}
+    .tab{padding:14px 28px;background:none;border:0;border-bottom:3px solid transparent;color:#968d89;font-size:12px;font-weight:800;letter-spacing:.13em;cursor:pointer}
+    .tab[aria-selected="true"]{color:var(--cream);border-bottom-color:var(--red)}
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px 16px}
+    .product-card{background:#252225;min-width:0;padding-bottom:20px}
+    .product-visual{position:relative;background:#302c2e;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden}
+    .product-visual:before{content:"DCS / 1997";position:absolute;top:16px;left:16px;color:#928984;font-size:9px;letter-spacing:.13em;font-weight:700}
+    .product-visual svg{width:78%;height:78%;filter:drop-shadow(0 10px 8px #0005)}
+    .product-controls{position:absolute;bottom:12px;right:12px;display:flex;gap:4px}
+    .view-button{padding:7px 9px;border:1px solid #6b6260;background:#252225;color:#c1b9b3;font-size:9px;font-weight:800;letter-spacing:.08em;cursor:pointer}
+    .view-button[aria-pressed="true"]{background:var(--cream);border-color:var(--cream);color:var(--bg)}
+    .product-info{padding:18px 18px 0}
+    .product-info h3{font-size:22px;min-height:46px}
+    .product-info p{margin:8px 0 15px;min-height:38px;color:var(--muted);font-size:12px;line-height:1.5}
+    .color-label{display:block;margin-bottom:8px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#c8bfb9}
+    .swatches{display:flex;flex-wrap:wrap;gap:7px;min-height:48px;align-content:start}
+    .swatch{width:21px;height:21px;border:1px solid #827a76;border-radius:50%;cursor:pointer;padding:0}
+    .swatch[aria-pressed="true"]{outline:2px solid var(--cream);outline-offset:2px}
+    .reserve{width:100%;min-height:43px;margin-top:14px;padding:0 10px;font-size:9px}
+    .collection-signoff{text-align:center;margin-top:55px;font:500 17px Oswald,sans-serif;letter-spacing:.14em;color:#bdb4ae}
+    .sizes{padding:95px 0 110px}
+    .sizes-layout{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px}
+    .sizes h2{font-size:clamp(45px,5vw,68px);margin:14px 0 18px}
+    .sizes-copy p{color:var(--muted);max-width:340px}
+    .sizes-copy .button{margin-top:26px}
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap}
+    th,td{padding:15px 12px;border-bottom:1px solid var(--line);font-size:12px}
+    th{color:#a99f99;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+    td:first-child{color:var(--red);font-weight:800}
+    .dcs{background:#e8e1d8;color:#181618}
+    .dcs-layout{display:grid;grid-template-columns:1fr 1fr;gap:9%;align-items:center}
+    .dcs-image{aspect-ratio:4/5;max-height:660px}
+    .dcs h2{font-size:clamp(49px,6vw,78px);margin:20px 0 25px}
+    .dcs-copy>p:not(.eyebrow){max-width:500px;color:#605b59}
+    .values{list-style:none;padding:0;margin:40px 0 0;border-top:1px solid #bdb5ad}
+    .values li{display:flex;gap:30px;padding:15px 0;border-bottom:1px solid #bdb5ad;font:500 25px Oswald,sans-serif;text-transform:uppercase}
+    .values span{font:700 11px Inter,sans-serif;color:var(--red);padding-top:7px}
+    .club{padding:70px 0;background:#252123}
+    .club-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .club h2{font-size:clamp(35px,4vw,55px);margin:10px 0}
+    .club p{color:var(--muted)}
+    .marquee{overflow:hidden;background:var(--red);padding:16px 0}
+    .marquee-track{display:flex;width:max-content;animation:scroll 25s linear infinite}
+    .marquee-track span{font:600 25px Oswald,sans-serif;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+    @keyframes scroll{to{transform:translateX(-50%)}}
+    .closing{text-align:center;padding:120px 20px}
+    .closing h2{max-width:800px;margin:18px auto 30px;font-size:clamp(52px,8vw,100px)}
+    footer{border-top:1px solid var(--line);padding:28px 0;color:#9e9590;font-size:11px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}
+    .footer-inner .logo{color:var(--cream);font-size:19px}
+    .footer-inner .logo-mark{font-size:27px}
+    .whatsapp-float{position:fixed;z-index:21;right:24px;bottom:24px;width:55px;height:55px;display:grid;place-items:center;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 5px 25px #0008}
+    .whatsapp-float svg{width:28px;height:28px;fill:currentColor}
+    @media(max-width:1000px){
+      .wrap{width:min(100% - 48px,1360px)}
+      .nav{gap:18px}
+      .equipment-grid{grid-template-columns:repeat(3,1fr);gap:28px 14px}
+      .product-grid{grid-template-columns:repeat(3,1fr)}
+      .hero-inner{min-height:560px;gap:25px}
+      .sizes-layout{gap:35px}
+    }
+    @media(max-width:700px){
+      html{scroll-padding-top:110px}
+      .wrap{width:calc(100% - 36px)}
+      .header-inner{height:auto;min-height:65px;flex-wrap:wrap;gap:0;padding-top:8px}
+      .logo{font-size:22px}.logo-mark{font-size:30px}
+      .header-cta{min-height:38px;padding:0 12px;font-size:9px}
+      .nav{order:3;width:100%;justify-content:space-between;gap:8px;padding:10px 0 9px;font-size:9px}
+      main{padding-top:102px}
+      .hero-inner{grid-template-columns:1fr;min-height:0;padding:65px 0 58px;gap:45px}
+      .hero h1{font-size:clamp(53px,12vw,80px)}
+      .hero-copy>p{font-size:14px}
+      .hero-art{width:88%;margin:auto}
+      .hero-index{display:none}
+      .meaning-inner{grid-template-columns:1fr auto;gap:12px;padding:30px 0}
+      .meaning h2{font-size:35px}.meaning p{grid-column:1 / -1;grid-row:2}
+      .timer{font-size:55px}
+      .section{padding:75px 0}
+      .section-heading{align-items:start;flex-direction:column;gap:16px;margin-bottom:30px}
+      .equipment-grid{grid-template-columns:repeat(2,1fr)}
+      .equipment-card h3{font-size:20px}
+      .collection-heading{align-items:start}
+      .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+      .product-info{padding:14px 12px 0}
+      .product-info h3{font-size:18px;min-height:38px}
+      .product-info p{font-size:11px;min-height:50px}
+      .product-controls{right:7px;bottom:7px}
+      .view-button{padding:6px;font-size:8px}
+      .swatches{min-height:72px}
+      .reserve{font-size:8px;letter-spacing:.04em}
+      .sizes{padding:75px 0}.sizes-layout{grid-template-columns:minmax(0,1fr);gap:32px}
+      th,td{padding:13px 10px}
+      .dcs-layout{grid-template-columns:1fr;gap:40px}
+      .dcs-image{max-height:480px}
+      .club-inner{align-items:start;flex-direction:column}
+      .closing{padding:85px 18px}
+      .footer-inner{align-items:start;flex-direction:column}
+      .whatsapp-float{width:50px;height:50px;right:16px;bottom:16px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.marquee-track{animation:none}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="#inicio" aria-label="DAVAI Combat Sports, inicio"><span class="logo-mark">V</span><span>DA<span class="brand-v">V</span>AI</span></a>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="#equipamiento">Equipamiento</a><a href="#coleccion">Colección</a><a href="#tallas">Tallas</a><a href="#dcs">DCS</a>
+      </nav>
+      <a class="button header-cta" href="https://wa.me/34669090410?text=Hola%20DAVAI!%20Quiero%20unirme%20a%20la%20lista." target="_blank" rel="noopener noreferrer">Únete a la lista <span class="arrow">↗</span></a>
+    </div>
+  </header>
+  <main id="inicio">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="dot"></span> Primera colección · Próximamente</div>
+          <h1>Entrena con <span class="red">honor.</span><br>Pelea con <span class="red">valor.</span></h1>
+          <p>Para quienes dan un paso más. Equipamiento y ropa de combate nacidos del respeto por el camino, dentro y fuera del ring.</p>
+          <div class="actions">
+            <a class="button" href="https://wa.me/34669090410?text=Hola%20DAVAI!%20Quiero%20ser%20de%20los%20primeros%20en%20conocer%20la%20colecci%C3%B3n." target="_blank" rel="noopener noreferrer">Quiero ser de los primeros <span class="arrow">↗</span></a>
+            <a class="button outline" href="#coleccion">Ver la colección <span class="arrow">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-art image-fallback"><span>DA<span class="brand-v">V</span>AI · EST. 1997<br>Honor · Valor · Respeto</span><img src="img/hero.jpg" alt="Logo DAVAI, EST 1997, Honor Valor Respeto" onerror="this.hidden=true"></div>
+        <span class="hero-index">DCS / COMBAT SPORTS — EST. 1997</span>
+      </div>
+    </section>
+    <section class="meaning">
+      <div class="wrap meaning-inner">
+        <h2>DA<span class="brand-v">V</span>AI · ¡Vamos!</h2>
+        <p>DA<span class="brand-v">V</span>AI significa ¡vamos! Lo que te gritan desde la esquina cuando quedan diez segundos y ya no te quedan fuerzas.</p>
+        <div class="timer" aria-label="10 segundos">00:10</div>
+      </div>
+    </section>
+    <section class="section" id="equipamiento">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">01 / Equipamiento</p><h2>Hecho para<br>el combate<span class="red">.</span></h2></div><p class="section-note">La primera colección está en camino. Diseñada para acompañarte en cada asalto.</p></div>
+        <div class="equipment-grid">
+          <article class="equipment-card"><div class="equipment-image image-fallback"><span>Boxing Gloves 01</span><img src="img/guantes.jpg" alt="Boceto de guantes de boxeo" onerror="this.hidden=true"></div><span class="tag">Boceto · Próximamente</span><h3>Boxing Gloves 01 · 14 oz</h3><p>Negro, azul y rosa.</p></article>
+          <article class="equipment-card"><div class="equipment-image image-fallback"><span>Hand Wraps 01</span><img src="img/vendas.jpg" alt="Boceto de vendas de boxeo" onerror="this.hidden=true"></div><span class="tag">Boceto · Próximamente</span><h3>Hand Wraps 01</h3><p>Negro, azul y rosa.</p></article>
+          <article class="equipment-card"><div class="equipment-image image-fallback"><span>Headguard 01</span><img src="img/casco.jpg" alt="Boceto de casco de protección" onerror="this.hidden=true"></div><span class="tag">Boceto · Próximamente</span><h3>Headguard 01</h3><p>Negro, azul y rosa.</p></article>
+          <article class="equipment-card"><div class="equipment-image image-fallback"><span>Gym Bag 01</span><img src="img/bolsa.jpg" alt="Boceto de bolsa de gimnasio" onerror="this.hidden=true"></div><span class="tag">Boceto · Próximamente</span><h3>Gym Bag 01</h3><p>Blanco o negro. Compartimento para zapatillas y bolsillo para botella.</p></article>
+          <article class="equipment-card"><div class="equipment-image image-fallback"><span>Bottle 01</span><img src="img/botella.jpg" alt="Boceto de botella DAVAI" onerror="this.hidden=true"></div><span class="tag">Boceto · Próximamente</span><h3>Bottle 01</h3><p>Negra, con logo DA<span class="brand-v">V</span>AI y «Disciplina en movimiento».</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section clothing" id="coleccion">
+      <div class="wrap">
+        <div class="section-heading collection-heading"><div><p class="eyebrow">La primera colección / DCS</p><h2>Ropa DA<span class="brand-v">V</span>AI</h2><p class="collection-subtitle">Fuerza · Disciplina · Actitud</p></div>
+          <div class="tabs" role="tablist" aria-label="Colección y guía de tallas">
+            <button class="tab" id="tab-mujer" type="button" role="tab" aria-selected="true" aria-controls="productos" data-gender="mujer">Mujer</button>
+            <button class="tab" id="tab-hombre" type="button" role="tab" aria-selected="false" aria-controls="productos" data-gender="hombre" tabindex="-1">Hombre</button>
+          </div>
+        </div>
+        <div class="product-grid" id="productos" role="tabpanel" aria-labelledby="tab-mujer"></div>
+        <p class="collection-signoff">HONOR · VALOR · RESPETO — EST. 1997</p>
+      </div>
+    </section>
+    <section class="sizes" id="tallas">
+      <div class="wrap sizes-layout">
+        <div class="sizes-copy"><p class="eyebrow red">Encuentra tu ajuste</p><h2>Guía de tallas<span class="red">.</span></h2><p>Medidas en centímetros, orientativas. Selecciona mujer u hombre en la colección para ver tu guía.</p><a class="button outline" href="https://wa.me/34669090410?text=Hola%20DAVAI!%20Necesito%20ayuda%20para%20consultar%20mi%20talla." target="_blank" rel="noopener noreferrer">Consultar mi talla <span class="arrow">↗</span></a></div>
+        <div><p class="eyebrow red" id="size-title">Mujer / medidas en cm</p><div class="table-wrap"><table aria-labelledby="size-title"><thead><tr><th scope="col">Talla</th><th scope="col">Pecho</th><th scope="col">Cintura</th><th scope="col">Cadera</th><th scope="col">Equivalencia</th></tr></thead><tbody id="size-rows"></tbody></table></div></div>
+      </div>
+    </section>
+    <section class="section dcs" id="dcs">
+      <div class="wrap dcs-layout">
+        <div class="dcs-image image-fallback"><span>El lobo · DCS</span><img src="img/dcs.jpg" alt="El lobo de DAVAI Combat Sports" onerror="this.hidden=true"></div>
+        <div class="dcs-copy"><p class="eyebrow red">02 / DCS · Más que un deporte</p><h2>El verdadero combate empieza dentro de ti<span class="red">.</span></h2><p>Como el lobo: fuerza en la adversidad. DA<span class="brand-v">V</span>AI es para quien entrena, compite y evoluciona. Disciplina, carácter, resiliencia y superación.</p><ol class="values"><li><span>I</span> Honor</li><li><span>II</span> Valor</li><li><span>III</span> Respeto</li></ol></div>
+      </div>
+    </section>
+    <section class="club"><div class="wrap club-inner"><div><p class="eyebrow red">Juntos somos más fuertes</p><h2>¿Tienes club o gimnasio?</h2><p>Hablemos de cómo formar equipo.</p></div><a class="button" href="https://wa.me/34669090410?text=Hola%20DAVAI!%20Tengo%20un%20club%20o%20gimnasio%20y%20me%20gustar%C3%ADa%20hablar%20con%20vosotros." target="_blank" rel="noopener noreferrer"><span>Hablar con DA<span class="brand-v">V</span>AI</span> <span class="arrow">↗</span></a></div></section>
+    <div class="marquee" aria-label="Honor · Valor · Respeto · Davai"><div class="marquee-track" aria-hidden="true"><span>Honor · Valor · Respeto · DA<span class="brand-v">V</span>AI · Honor · Valor · Respeto · DA<span class="brand-v">V</span>AI ·&nbsp;</span><span>Honor · Valor · Respeto · DA<span class="brand-v">V</span>AI · Honor · Valor · Respeto · DA<span class="brand-v">V</span>AI ·&nbsp;</span></div></div>
+    <section class="closing"><p class="eyebrow red">El primer asalto está cerca</p><h2>Sé de los primeros en tenerlos<span class="red">.</span></h2><a class="button" href="https://wa.me/34669090410?text=Hola%20DAVAI!%20Quiero%20saber%20cu%C3%A1ndo%20estar%C3%A1%20disponible%20la%20primera%20colecci%C3%B3n." target="_blank" rel="noopener noreferrer">WhatsApp 669 09 04 10 <span class="arrow">↗</span></a></section>
+  </main>
+  <footer><div class="wrap footer-inner"><a class="logo" href="#inicio" aria-label="DAVAI Combat Sports, inicio"><span class="logo-mark">V</span><span>DA<span class="brand-v">V</span>AI</span></a><p>© DA<span class="brand-v">V</span>AI Combat Sports · DCS — Honor · Valor · Respeto</p></div></footer>
+  <a class="whatsapp-float" href="https://wa.me/34669090410?text=Hola%20DAVAI!%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener noreferrer" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2a9.93 9.93 0 0 0-8.6 14.91L2 22l5.22-1.37A9.96 9.96 0 1 0 12.04 2zm0 18.18a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.1.82.83-3.02-.2-.31a8.19 8.19 0 1 1 6.95 3.83zm4.5-6.13c-.25-.12-1.46-.72-1.69-.8-.22-.09-.39-.13-.55.12-.16.25-.64.8-.78.96-.14.17-.29.19-.53.07-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.37-1.7-.14-.24-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.55-1.33-.76-1.82-.2-.47-.4-.4-.55-.41h-.47c-.16 0-.43.06-.65.3-.22.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.16 1.73 2.64 4.19 3.7.58.25 1.03.4 1.39.51.58.19 1.12.16 1.54.1.47-.07 1.46-.6 1.67-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg></a>
+  <script>
+    const collections = {
+      mujer: [
+        ['Top deportivo cruzado','Sujeción y libertad para cada entrenamiento.','top'],
+        ['Leggings tiro alto','Comodidad y ajuste en cada movimiento.','leggings'],
+        ['Biker short','Un básico de entrenamiento que sigue tu ritmo.','short'],
+        ['Short Muay Thai','Libertad de movimiento para cada golpe.','short'],
+        ['Camiseta crop','Ligera y preparada para entrenar.','crop'],
+        ['Polo','Estilo deportivo dentro y fuera del gimnasio.','shirt'],
+        ['Rashguard manga larga','Ajuste cómodo para los entrenamientos más intensos.','long'],
+        ['Sudadera crop con capucha','Abrigo y comodidad antes y después del combate.','hoodieCrop'],
+        ['Chaqueta zip','Una capa versátil para acompañar tu rutina.','jacket']
+      ],
+      hombre: [
+        ['Camiseta','Un básico cómodo para cada entrenamiento.','shirt'],
+        ['Polo','Estilo deportivo dentro y fuera del gimnasio.','shirt'],
+        ['Rashguard manga larga','Ajuste cómodo para los entrenamientos más intensos.','long'],
+        ['Sudadera con capucha','Abrigo y comodidad antes y después del combate.','hoodie'],
+        ['Chaqueta chándal','Una capa versátil para acompañar tu rutina.','jacket'],
+        ['Pantalón chándal','Comodidad para entrenar y descansar.','leggings'],
+        ['Pantalón Muay Thai','Libertad de movimiento para cada golpe.','short'],
+        ['Fight short MMA','Ligero y cómodo para el trabajo en el tatami.','short']
+      ]
+    };
+    const colors = {
+      mujer: [['Negro/Rojo','#171717'],['Rosa','#d77d94'],['Blanco','#eeeae4'],['Azul Marino','#1b2944'],['Rojo','#bd2530'],['Gris','#888888']],
+      hombre: [['Negro/Rojo','#171717'],['Negro/Blanco','#222222'],['Blanco','#eeeae4'],['Azul Marino','#1b2944'],['Rojo','#bd2530'],['Gris','#888888'],['Verde Militar','#58604a'],['Arena','#bda98b'],['Burdeos','#722e3b'],['Azul Royal','#2556a5'],['España','#be3030'],['Rusia','#e5e8ed']]
+    };
+    const sizes = {
+      mujer: [['XS','78–82','60–64','86–90','34'],['S','82–86','64–68','90–94','36'],['M','86–92','68–74','94–100','38–40'],['L','92–98','74–80','100–106','42'],['XL','98–104','80–86','106–112','44'],['XXL','104–110','86–92','112–118','46']],
+      hombre: [['S','88–96','76–84','90–98','46'],['M','96–104','84–92','98–106','48–50'],['L','104–112','92–100','106–114','52'],['XL','112–120','100–108','114–122','54'],['XXL','120–128','108–116','122–130','56'],['3XL','128–136','116–124','130–138','58']]
+    };
+    const shapes = {
+      top:'M65 36 L82 27 L93 48 L107 48 L118 27 L135 36 L145 90 L55 90 Z',
+      shirt:'M65 35 L82 28 Q100 43 118 28 L135 35 L165 62 L148 83 L135 74 L135 158 L65 158 L65 74 L52 83 L35 62 Z',
+      crop:'M65 35 L82 28 Q100 43 118 28 L135 35 L165 62 L148 83 L135 74 L135 112 L65 112 L65 74 L52 83 L35 62 Z',
+      long:'M65 35 L82 28 Q100 43 118 28 L135 35 L163 50 L179 125 L158 130 L140 78 L135 158 L65 158 L60 78 L42 130 L21 125 L37 50 Z',
+      hoodie:'M65 39 Q70 14 100 14 Q130 14 135 39 L163 52 L179 128 L158 133 L140 80 L135 158 L65 158 L60 80 L42 133 L21 128 L37 52 Z',
+      hoodieCrop:'M65 39 Q70 14 100 14 Q130 14 135 39 L163 52 L179 128 L158 133 L140 80 L135 115 L65 115 L60 80 L42 133 L21 128 L37 52 Z',
+      jacket:'M65 35 L82 25 L100 35 L118 25 L135 35 L163 50 L179 125 L158 130 L140 78 L135 158 L65 158 L60 78 L42 130 L21 125 L37 50 Z',
+      leggings:'M65 25 L135 25 L140 85 L130 174 L105 174 L100 94 L95 174 L70 174 L60 85 Z',
+      short:'M65 38 L135 38 L145 118 L108 121 L100 89 L92 121 L55 118 Z'
+    };
+    const productGrid = document.getElementById('productos');
+    let gender = 'mujer';
+    function garmentSvg(shape, color, back) {
+      const lower = shape === 'leggings' || shape === 'short';
+      const markY = lower ? 65 : 75;
+      const detail = shape === 'jacket' ? '<path d="M100 36 V155" stroke="#888" stroke-width="2"/>' : '';
+      return `<svg viewBox="0 0 200 200" role="img" aria-label="Prenda vista ${back ? 'por detrás' : 'por delante'}"><path d="${shapes[shape]}" fill="${color}" stroke="#777" stroke-width="2" stroke-linejoin="round"/>${detail}${back ? `<text x="100" y="${markY}" text-anchor="middle" fill="#d7262f" font-family="Oswald,sans-serif" font-size="24" font-weight="700">V</text><text x="100" y="${markY + 13}" text-anchor="middle" fill="#aaa" font-family="Inter,sans-serif" font-size="5" font-weight="700">HONOR · VALOR · RESPETO</text>` : `<text x="${lower ? 120 : 112}" y="${markY}" text-anchor="middle" fill="#d7262f" font-family="Oswald,sans-serif" font-size="19" font-weight="700">V</text>`}</svg>`;
+    }
+    function render() {
+      document.querySelectorAll('.tab').forEach(tab => {
+        const selected = tab.dataset.gender === gender;
+        tab.setAttribute('aria-selected', selected);
+        tab.tabIndex = selected ? 0 : -1;
+      });
+      productGrid.setAttribute('aria-labelledby', `tab-${gender}`);
+      productGrid.innerHTML = collections[gender].map(([name, description, shape], index) => `
+        <article class="product-card" data-index="${index}" data-shape="${shape}" data-color="0" data-back="false">
+          <div class="product-visual">${garmentSvg(shape, colors[gender][0][1], false)}<div class="product-controls" aria-label="Vista de ${name}"><button type="button" class="view-button" data-view="front" aria-pressed="true">DELANTE</button><button type="button" class="view-button" data-view="back" aria-pressed="false">DETRÁS</button></div></div>
+          <div class="product-info"><h3>${name}</h3><p>${description} Honor · Valor · Respeto.</p><span class="color-label">Color: <strong>${colors[gender][0][0]}</strong></span><div class="swatches" aria-label="Colores de ${name}">${colors[gender].map(([label, color], i) => `<button type="button" class="swatch" data-color-index="${i}" style="background:${color}" aria-label="${label}" title="${label}" aria-pressed="${i === 0}"></button>`).join('')}</div><a class="button reserve" target="_blank" rel="noopener noreferrer"></a></div>
+        </article>`).join('');
+      document.getElementById('size-title').textContent = `${gender === 'mujer' ? 'Mujer' : 'Hombre'} / medidas en cm`;
+      document.getElementById('size-rows').innerHTML = sizes[gender].map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('');
+      productGrid.querySelectorAll('.product-card').forEach(updateCard);
+    }
+    function updateCard(card) {
+      const colorIndex = Number(card.dataset.color);
+      const [colorName, color] = colors[gender][colorIndex];
+      const name = collections[gender][Number(card.dataset.index)][0];
+      const back = card.dataset.back === 'true';
+      card.querySelector('svg').outerHTML = garmentSvg(card.dataset.shape, color, back);
+      card.querySelector('.color-label strong').textContent = colorName;
+      card.querySelectorAll('.swatch').forEach((button, index) => button.setAttribute('aria-pressed', index === colorIndex));
+      card.querySelectorAll('.view-button').forEach(button => button.setAttribute('aria-pressed', (button.dataset.view === 'back') === back));
+      const link = card.querySelector('.reserve');
+      link.textContent = 'RESERVAR POR WHATSAPP ↗';
+      link.href = `https://wa.me/34669090410?text=${encodeURIComponent(`Hola DAVAI! Quiero reservar: ${name} (${gender}) · color ${colorName} · talla: `)}`;
+    }
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => { gender = tab.dataset.gender; render(); });
+      tab.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          gender = gender === 'mujer' ? 'hombre' : 'mujer';
+          render();
+          document.getElementById(`tab-${gender}`).focus();
+        }
+      });
+    });
+    productGrid.addEventListener('click', event => {
+      const card = event.target.closest('.product-card');
+      if (!card) return;
+      if (event.target.matches('.swatch')) card.dataset.color = event.target.dataset.colorIndex;
+      else if (event.target.matches('.view-button')) card.dataset.back = event.target.dataset.view === 'back';
+      else return;
+      updateCard(card);
+    });
+    render();
+  </script>
+</body>
+</html>
