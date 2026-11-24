@@ -30,3 +30,6 @@ Lo que llevas en la espalda no es un eslogan. Honor. Valor. Respeto.
 Más que un deporte. Una actitud. Disciplina hoy, libertad siempre. Guarda este post para los días duros.
 
 **Hashtags:** #DavaiCombatSports #Davai #HonorValorRespeto #MuayThai #Boxeo #MMA #BJJ #K1 #Kickboxing #FightWear #RopaDeportiva #DeportesDeContacto
+
+**10 · Votación sudadera (A o B)**
+Tú decides 🔴 ¿A (negro/rojo) o B (rojo)? Sudadera con capucha: V en el pecho y DAVAI · HONOR · VALOR · RESPETO a la espalda. Comenta A o B: el color más votado sale primero 👇
