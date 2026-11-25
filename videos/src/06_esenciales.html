@@ -1,0 +1,114 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><script src="base.js"></script>
+<style>
+#card{position:absolute;left:60px;right:60px;top:570px;height:900px;border-radius:28px;background:#fff;overflow:hidden;opacity:0}
+.shot{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.shot img{max-width:92%;max-height:92%;display:block}
+.shot svg{width:88%;height:88%}
+#kick{position:absolute;left:70px;top:240px;font-family:Oswald;font-weight:600;color:var(--red);letter-spacing:10px;font-size:30px}
+#ttl{position:absolute;left:70px;top:290px;font-family:Anton;font-size:120px;line-height:.95;text-transform:uppercase}
+#side{position:absolute;right:90px;top:600px;background:#111;color:#fff;font-family:Oswald;font-weight:600;letter-spacing:5px;font-size:26px;padding:10px 18px;border-radius:6px;z-index:5}
+#col{position:absolute;left:70px;top:1500px;font-family:Oswald;font-weight:600;font-size:42px;letter-spacing:5px;display:flex;align-items:center;gap:20px}
+#col i{width:38px;height:38px;border-radius:50%;border:3px solid #666;display:inline-block}
+#ref{position:absolute;right:70px;top:1506px;font-family:Oswald;font-size:32px;color:#888;letter-spacing:4px}
+#strip{position:absolute;left:0;top:640px;width:1080px;height:640px}
+.it{position:absolute;top:0;width:470px;height:640px;border-radius:24px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.it img{max-width:90%;max-height:90%}
+.cover{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover;object-position:50% 20%}
+.svgbg{background:#f1f1ef}
+</style></head><body>
+<div id="stage">
+  <img id="v" class="v" src="a/v_alpha.png" style="width:700px;mix-blend-mode:normal">
+  <div id="i1" class="abs osw red" style="top:1250px;font-size:40px;letter-spacing:14px">NUEVA LÍNEA</div>
+  <div id="i2" class="abs anton" style="top:1310px;font-size:190px">ESENCIALES</div>
+  <div id="kick"></div><div id="ttl"></div>
+  <div id="card"></div><div id="side"></div>
+  <div id="col"><i></i><span></span></div><div id="ref"></div>
+  <div id="strip"></div>
+  <div id="endt" class="abs" style="top:300px;opacity:0"><div class="anton" style="font-size:150px">DA<span class="red">V</span>AI</div>
+    <div class="osw" style="font-size:34px;letter-spacing:14px;color:#ccc;margin-top:12px">HONOR · VALOR · RESPETO</div></div>
+  <div id="cta" class="abs" style="top:1390px;opacity:0"><span style="display:inline-block;background:var(--red);font-family:Oswald;font-weight:600;font-size:48px;letter-spacing:8px;padding:24px 46px;border-radius:10px">PÍDELO POR DM</span></div>
+  <div id="hd" class="handle">@DAVAICOMBATSPORTS</div>
+  <div id="flash"></div><div id="grain"></div>
+</div>
+<script>
+const DUR = 20;
+const shade = (hex, k) => { const n = parseInt(hex.slice(1), 16); let r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+  r = Math.round(r * k); g = Math.round(g * k); b = Math.round(b * k); return `rgb(${r},${g},${b})`; };
+const light = hex => { const n = parseInt(hex.slice(1), 16); return ((n >> 16) * .3 + ((n >> 8) & 255) * .59 + (n & 255) * .11) > 140; };
+function backText(y, size, base) {
+  const c = light(base) ? '#141414' : '#f4f4f4';
+  return `<g font-family="Anton" font-size="${size}" text-anchor="middle" fill="${c}">
+    <text x="300" y="${y}">HONOR</text><text x="300" y="${y + size * 1.05}" fill="#e30613">VALOR</text>
+    <text x="300" y="${y + size * 2.1}">RESPETO</text></g>`;
+}
+function teeBack(c) {
+  const s = shade(c, .72);
+  return `<svg viewBox="0 0 600 600"><g stroke="${s}" stroke-width="3" stroke-linejoin="round">
+  <path fill="${c}" d="M160,95 L238,72 Q300,84 362,72 L440,95 L565,205 L505,285 L445,238 L448,552 L152,552 L155,238 L95,285 L35,205 Z"/>
+  <path fill="none" d="M238,72 Q300,90 362,72"/><path fill="none" d="M155,238 L160,100 M445,238 L440,100" stroke-opacity=".5"/>
+  <path fill="none" d="M60,232 L118,276 M540,232 L482,276" stroke-opacity=".5"/></g>${backText(195, 62, c)}</svg>`;
+}
+function hoodBack(c) {
+  const s = shade(c, .72);
+  return `<svg viewBox="0 0 600 600"><g stroke="${s}" stroke-width="3" stroke-linejoin="round">
+  <path fill="${c}" d="M150,135 L95,165 L48,500 L112,507 L150,255 Z"/><path fill="${c}" d="M450,135 L505,165 L552,500 L488,507 L450,255 Z"/>
+  <path fill="${c}" d="M44,500 L112,507 L108,548 L40,541 Z"/><path fill="${c}" d="M556,500 L488,507 L492,548 L560,541 Z"/>
+  <path fill="${c}" d="M150,135 L450,135 L462,518 L138,518 Z"/><path fill="${c}" d="M138,518 L462,518 L460,560 L140,560 Z"/>
+  <path fill="${c}" d="M212,142 Q200,32 300,22 Q400,32 388,142 Z"/><path fill="none" d="M300,22 L300,142" stroke-opacity=".6"/>
+  </g>${backText(235, 56, c)}</svg>`;
+}
+const TEE = [['Blanco', '#f6f6f4', '01'], ['Crudo', '#ece5d8', '132'], ['Camel', '#c78c60', '08']];
+const HOOD = [['Blanco', '#f6f6f4', '01'], ['Beige', '#e4d9c1', '229'], ['Azul', '#5f87a4', '170'], ['Marino', '#1e2b4f', '55'], ['Gris', '#8b8b8b', '108'], ['Negro', '#161616', '02']];
+// shots: [start, end, html, title, kick, side, colorName, colorHex, ref]
+const SH = [];
+SH.push([2.2, 4.4, '<img class="cover" src="a/tee_v.png">', 'Camiseta<br>oversize', 'BULL · CA6560', 'DELANTE', 'Crudo', '#ece5d8', 'V EN EL PECHO']);
+TEE.forEach((c, i) => SH.push([4.4 + i * 1.0, 5.4 + i * 1.0, teeBack(c[1]), 'Camiseta<br>oversize', 'BULL · CA6560', 'DETRÁS', c[0], c[1], 'COLOR ' + c[2]]));
+SH.push([7.4, 9.6, '<img src="a/hoodie_v.png">', 'Sudadera<br>capucha', 'OTTO · SU6702', 'DELANTE', 'Azul', '#5f87a4', 'V EN EL PECHO']);
+HOOD.forEach((c, i) => SH.push([9.6 + i * .6, 10.2 + i * .6, hoodBack(c[1]), 'Sudadera<br>capucha', 'OTTO · SU6702', 'DETRÁS', c[0], c[1], 'COLOR ' + c[2]]));
+SH.push([13.2, 15.4, '<img src="a/pants_v.png">', 'Pantalón<br>jogger', 'ARGOS · PA0460', 'DELANTE', 'Marino', '#1e2b4f', 'V EN EL MUSLO']);
+$('card').innerHTML = SH.map(s => `<div class="shot ${s[5]==='DETRÁS'?'svgbg':''}">${s[2]}</div>`).join('');
+const shots = [...document.querySelectorAll('.shot')];
+const ITEMS = ['tee_v', 'hoodie_v', 'pants_v', 'tee_v', 'hoodie_v', 'pants_v', 'tee_v', 'hoodie_v'];
+$('strip').innerHTML = ITEMS.map(i => `<div class="it"><img ${i==='tee_v'?'class="cover"':''} src="a/${i}.png"></div>`).join('');
+const tiles = [...document.querySelectorAll('.it')];
+function render(t) {
+  // intro
+  const pin = eo(prog(t, .2, .45)), [sx, sy] = shake(t, .65, .4, 24), io = win(t, 0, 2.2, .2);
+  st('v', { opacity: pin * io, transform: `translate(calc(-50% + ${sx}px), calc(-50% + ${sy - 200}px)) scale(${lerp(2.4, 1, pin)})` });
+  st('flash', { opacity: (win(t, .62, .82, .06) * .35).toFixed(3) });
+  const a = eb(prog(t, .9, .4)); st('i1', { opacity: cl(a * 1.4) * io });
+  const b = eb(prog(t, 1.1, .4)); st('i2', { opacity: cl(b * 1.4) * io, transform: `scale(${lerp(1.8, 1, cl(b))})` });
+  // product section 2.2 - 15.4
+  const so = win(t, 2.2, 15.4, .25);
+  ['card', 'kick', 'ttl', 'col', 'ref', 'side'].forEach(id => st(id, { opacity: so }));
+  let cur = null;
+  shots.forEach((el, i) => {
+    const [s, e] = SH[i];
+    const prevSame = i > 0 && SH[i - 1][3] === SH[i][3] && SH[i - 1][5] === 'DETRÁS' && SH[i][5] === 'DETRÁS';
+    const nextSame = i < SH.length - 1 && SH[i + 1][3] === SH[i][3] && SH[i + 1][5] === 'DETRÁS' && SH[i][5] === 'DETRÁS';
+    let x = 0, o = 1;
+    if (t < s || t > e + .4) { o = 0; }
+    else {
+      const pin = prevSame ? 1 : eo(prog(t, s, .4)), pout = nextSame ? 0 : eo(prog(t, e - .05, .4));
+      x = (1 - pin) * 1000 - pout * 1000;
+      if (nextSame && t >= e) o = 0;
+    }
+    if (t >= s && t < e) cur = SH[i];
+    st(el, { opacity: o, transform: `translateX(${x}px)` });
+  });
+  if (cur) {
+    $('ttl').innerHTML = cur[3]; $('kick').textContent = cur[4]; $('side').textContent = cur[5];
+    $('col').querySelector('span').textContent = cur[6].toUpperCase(); st($('col').querySelector('i'), { background: cur[7] });
+    $('ref').textContent = cur[8];
+  }
+  // finale: all three slide left
+  const fo = cl((t - 15.4) / .3);
+  st('strip', { opacity: fo }); st('endt', { opacity: eo(prog(t, 15.5, .5)) });
+  const run = Math.max(0, t - 15.3), ease = run < .8 ? .625 * run * run : run - .4;
+  tiles.forEach((el, i) => { const x = 1080 + 40 + i * 500 - ease * 700;
+    st(el, { transform: `translateX(${x}px)`, display: (x > -480 && x < 1100) ? 'flex' : 'none' }); });
+  const c = eb(prog(t, 17.0, .45)); st('cta', { opacity: cl(c * 1.4), transform: `scale(${lerp(1.5, 1, cl(c))})` });
+  st('hd', { opacity: eo(prog(t, 17.5, .6)) });
+  grain(t);
+}
+</script></body></html>
