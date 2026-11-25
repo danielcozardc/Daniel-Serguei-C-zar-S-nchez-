@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#e30613}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000;color:#f2f2f2;font-family:Inter,sans-serif}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;
+ background:radial-gradient(ellipse at 50% 30%,#1e0709 0%,#000 65%)}
+.abs{position:absolute;left:0;right:0;text-align:center}
+.anton{font-family:Anton;text-transform:uppercase;line-height:.92}
+.osw{font-family:Oswald;text-transform:uppercase}
+.red{color:var(--red)}
+.v{mix-blend-mode:screen;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+#grain{position:absolute;inset:0;pointer-events:none;opacity:.08;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>")}
+#flash{position:absolute;inset:0;background:var(--red);opacity:0;pointer-events:none}
+.bars:before,.bars:after{content:"";position:absolute;left:0;right:0;height:0}
+.tile{border-radius:22px;overflow:hidden;background:#ececec}
+.tile img{display:block;width:100%}
+.handle{position:absolute;bottom:330px;left:0;right:0;text-align:center;font-family:Oswald;letter-spacing:8px;font-size:26px;color:#bbb}

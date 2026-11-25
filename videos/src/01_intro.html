@@ -1,0 +1,37 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><script src="base.js"></script></head><body>
+<div id="stage">
+  <img id="v" class="v" src="a/v.png" style="width:900px">
+  <div id="word" class="abs anton" style="top:830px;font-size:250px;letter-spacing:4px">
+    <span>D</span><span>A</span><span class="red">V</span><span>A</span><span>I</span></div>
+  <div id="cs" class="abs osw" style="top:1085px;font-size:44px;font-weight:500">COMBAT SPORTS</div>
+  <div id="line" style="position:absolute;top:1180px;left:50%;height:6px;background:var(--red);transform:translateX(-50%)"></div>
+  <div id="vals" class="abs anton" style="top:1240px;font-size:92px">
+    <span id="h1">HONOR</span> <span id="h2" class="red">VALOR</span> <span id="h3">RESPETO</span></div>
+  <div id="hd" class="handle">@DAVAICOMBATSPORTS</div><div id="flash"></div><div id="grain"></div>
+</div>
+<script>
+const DUR = 8;
+const letters = [...document.querySelectorAll('#word span')];
+function render(t) {
+  // V: slam in, then rise and shrink
+  const pin = eo(prog(t, .4, .45));
+  const up = eo(prog(t, 2.0, .7));
+  const [sx, sy] = shake(t, .85, .45, 26);
+  const sc = lerp(2.6, 1, pin) * lerp(1, .5, up);
+  st('v', { opacity: pin, filter: `blur(${(1 - pin) * 18}px)`,
+    transform: `translate(calc(-50% + ${sx}px), calc(-50% + ${sy + lerp(0, -380, up)}px)) scale(${sc})` });
+  st('flash', { opacity: (win(t, .82, 1.05, .08) * .4).toFixed(3) });
+  // DAVAI letters
+  letters.forEach((l, i) => { const p = eb(prog(t, 2.35 + i * .09, .35));
+    st(l, { display: 'inline-block', opacity: cl(p * 1.5), transform: `translateY(${(1 - p) * 120}px)` }); });
+  const c = eo(prog(t, 3.2, .8));
+  st('cs', { opacity: c, letterSpacing: `${lerp(4, 22, c)}px` });
+  st('line', { width: `${eo(prog(t, 3.6, .7)) * 640}px` });
+  ['h1', 'h2', 'h3'].forEach((id, i) => { const p = eb(prog(t, 4.4 + i * .5, .4));
+    st(id, { display: 'inline-block', opacity: cl(p * 1.4), transform: `scale(${lerp(1.8, 1, cl(p))})` }); });
+  st('hd', { opacity: eo(prog(t, 6.2, .6)) });
+  const out = prog(t, 7.4, .6);
+  st('stage', { opacity: 1 - out * .0 });
+  grain(t);
+}
+</script></body></html>
