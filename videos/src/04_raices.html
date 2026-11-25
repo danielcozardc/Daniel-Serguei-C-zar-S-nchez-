@@ -1,0 +1,65 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><script src="base.js"></script>
+<style>
+#bg{position:absolute;inset:-60px;background:url(a/poster.jpg) center/cover;filter:blur(40px) brightness(.35);opacity:0}
+#img{position:absolute;left:0;top:0;width:1254px;height:1254px;transform-origin:0 0}
+#shade{position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(to top,rgba(0,0,0,.92) 25%,transparent)}
+.cap{position:absolute;left:0;right:0;top:1260px;text-align:center;opacity:0}
+.cap .k{font-family:Oswald;font-weight:600;color:var(--red);letter-spacing:14px;font-size:34px}
+.cap .h{font-family:Anton;font-size:116px;line-height:.98;text-transform:uppercase;margin-top:16px}
+.cap .s{font-family:Oswald;letter-spacing:8px;font-size:30px;color:#ccc;margin-top:18px}
+</style></head><body>
+<div id="stage">
+  <div id="bg"></div>
+  <img id="img" src="a/poster.jpg">
+  <div id="shade"></div><div id="tshade" style="position:absolute;left:0;right:0;top:0;height:800px;background:linear-gradient(to bottom,rgba(0,0,0,.9) 30%,transparent);opacity:0"></div>
+  <div id="c1" class="cap"><div class="k">SIBERIA</div><div class="h">Fuerza en la<br>adversidad</div></div>
+  <div id="c2" class="cap" style="top:250px"><div class="k">ESPAÑA</div><div class="h">Raíces que<br>perduran</div></div>
+  <div id="c3" class="cap" style="top:250px"><div class="k">NUESTRO LEMA</div><div class="h">Ora · Disciplina<br>Pugna · <span class="red">Vincit</span></div></div>
+  <div id="end" class="abs" style="top:1420px;opacity:0">
+    <div class="anton" style="font-size:130px">DA<span class="red">V</span>AI</div>
+    <div class="osw" style="font-size:30px;letter-spacing:12px;color:#ccc;margin-top:14px">MÁS QUE UN DEPORTE, UNA FORMA DE VIDA</div>
+  </div>
+  <div id="hd" class="handle" style="bottom:260px">@DAVAICOMBATSPORTS</div>
+  <div id="flash"></div><div id="grain"></div>
+</div>
+<script>
+const DUR = 14;
+// camera keyframes: [t, cx, cy, scale, screenY]
+const K = [
+  [0.0, 627, 215, 2.35, 500], [3.2, 627, 250, 2.05, 500],
+  [4.0, 965, 760, 1.95, 1030], [6.8, 960, 790, 1.95, 1030],
+  [7.6, 627, 900, 1.95, 1250], [10.0, 627, 880, 1.9, 1250],
+  [11.3, 627, 627, 1080 / 1254, 860], [14, 627, 627, 1080 / 1254, 860],
+];
+function cam(t) {
+  for (let i = 0; i < K.length - 1; i++) {
+    const a = K[i], b = K[i + 1];
+    if (t <= b[0]) {
+      const moving = (i % 2 === 1) || i === K.length - 2;   // odd segments are fast moves
+      let x = (t - a[0]) / (b[0] - a[0]); x = cl(x);
+      x = moving ? (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2) : x;
+      return a.slice(1).map((v, j) => lerp(v, b[j + 1], x));
+    }
+  }
+  return K[K.length - 1].slice(1);
+}
+function render(t) {
+  const [cx, cy, s, sy] = cam(t);
+  st('img', { transform: `translate(${540 - cx * s}px, ${sy - cy * s}px) scale(${s})` });
+  const fin = eo(prog(t, 10.0, 1.3));
+  st('bg', { opacity: fin });
+  st('shade', { opacity: (1 - fin) * (1 - win(t, 3.6, 10.2, .4)) });
+  st('tshade', { opacity: win(t, 3.8, 10.2, .4) });
+  st('img', { boxShadow: fin > 0 ? `0 30px 90px rgba(0,0,0,${.8 * fin})` : 'none', borderRadius: `${fin * 14 / s}px` });
+  st('stage', { opacity: Math.min(eo(prog(t, 0, .6)), 1) });
+  [['c1', .5, 3.3], ['c2', 4.1, 6.9], ['c3', 7.7, 10.1]].forEach(([id, a, b]) => {
+    const o = win(t, a, b, .25), p = eo(prog(t, a, .5));
+    st(id, { opacity: o, transform: `translateY(${(1 - p) * 50}px)` });
+  });
+  const e = eb(prog(t, 11.5, .5));
+  st('end', { opacity: cl(e * 1.4), transform: `translateY(${(1 - cl(e)) * 60}px)` });
+  st('hd', { opacity: eo(prog(t, 12.2, .6)) });
+  st('flash', { opacity: (win(t, 11.45, 11.65, .06) * .25).toFixed(3) });
+  grain(t);
+}
+</script></body></html>
