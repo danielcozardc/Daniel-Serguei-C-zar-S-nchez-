@@ -2,6 +2,8 @@
 import sys, os, math
 import numpy as np, cv2
 src, outdir, fps, dur = sys.argv[1], sys.argv[2], 30, 16
+import json
+ENV = json.load(open(sys.argv[3]))['env'] if len(sys.argv) > 3 else None
 os.makedirs(outdir, exist_ok=True)
 img = cv2.imread(src)
 H, W = img.shape[:2]
@@ -42,8 +44,11 @@ for f in range(int(fps * dur)):
     dx += 3.0 * math.sin(2 * math.pi * t / 6.0) * M_head
     # muzzle "speaking": pull lower muzzle content down
     m = 0.0
-    for a0, b0 in TALK:
-        if a0 < t < b0: m = 5.5 * abs(math.sin((t - a0) * 7.5))
+    if ENV is not None:
+        if t < 5.7: m = 7.0 * ENV[f]
+    else:
+        for a0, b0 in TALK:
+            if a0 < t < b0: m = 5.5 * abs(math.sin((t - a0) * 7.5))
     dy += m * M_mouth
     # blink: drag fur from above over the eyes
     k = blink(t)

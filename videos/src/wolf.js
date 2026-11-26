@@ -2,7 +2,7 @@
 // CFG = { n, rule, icon:[cx,cy], lines:[[start,end,text,pos]], next }
 const DUR = 16;
 document.getElementById('stage').innerHTML = `
-  <img id="img" src="a/wolf_frames/0000.jpg" style="position:absolute;left:0;top:0;width:1080px;height:1080px;transform-origin:0 0">
+  <img id="img" src="${CFG.frames}/0000.jpg" style="position:absolute;left:0;top:0;width:1080px;height:1080px;transform-origin:0 0">
   <div id="snow" style="position:absolute;inset:0;pointer-events:none"></div><div id="eyeL" class="eye"></div><div id="eyeR" class="eye"></div>
   <div id="gb" style="position:absolute;left:0;right:0;bottom:0;height:900px;background:linear-gradient(to top,rgba(0,0,0,.97) 45%,transparent)"></div>
   <div id="gt" style="position:absolute;left:0;right:0;top:0;height:760px;background:linear-gradient(to bottom,rgba(0,0,0,.95) 35%,transparent);opacity:0"></div>
@@ -37,7 +37,7 @@ $('snow').innerHTML = FL.map(() => '<i style="position:absolute;border-radius:50
 const flakes = [...document.querySelectorAll('#snow i')];
 async function render(t) {
   const fr = Math.min(479, Math.round(t * 30));
-  const im = $('img'), want = `a/wolf_frames/${String(fr).padStart(4, '0')}.jpg`;
+  const im = $('img'), want = `${CFG.frames}/${String(fr).padStart(4, '0')}.jpg`;
   if (!im.src.endsWith(want)) { im.src = want; await im.decode(); }
   flakes.forEach((el, i) => { const f = FL[i]; const y = (f.y + t * f.v) % 1960 - 20, x = f.x + Math.sin(t * 1.3 + f.w) * 25;
     st(el, { left: x + 'px', top: y + 'px', width: f.r + 'px', height: f.r + 'px', opacity: f.o, filter: f.r > 6 ? 'blur(2px)' : 'none' }); });
