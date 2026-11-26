@@ -33,3 +33,19 @@ Más que un deporte. Una actitud. Disciplina hoy, libertad siempre. Guarda este 
 
 **10 · Votación sudadera (A o B)**
 Tú decides 🔴 ¿A (negro/rojo) o B (rojo)? Sudadera con capucha: V en el pecho y DAVAI · HONOR · VALOR · RESPETO a la espalda. Comenta A o B: el color más votado sale primero 👇
+
+## Shorts del lobo · Las 3 reglas (guion para voz en off)
+
+Para ponerle voz: en Instagram, Reels → Texto → escribe la frase → "Texto a voz". También puedes grabarla tú con voz grave.
+
+**Regla 1 · HONOR**
+"Escucha, cachorro. En la manada hay tres reglas. La primera: Honor. Actúa con integridad, aunque nadie te mire. En el tatami y fuera de él."
+Texto: Regla 1 de 3 🐺 ¿Vives con honor? #DavaiCombatSports #HonorValorRespeto
+
+**Regla 2 · VALOR**
+"¿Sientes miedo? Bien. El miedo no es el enemigo. La segunda regla: Valor. Enfrenta la adversidad. Cada asalto, cada día. El lobo no elige la tormenta. La atraviesa."
+Texto: Regla 2 de 3 🐺 Comenta tu mayor miedo en el combate. #DavaiCombatSports
+
+**Regla 3 · RESPETO**
+"Un lobo solo no sobrevive al invierno. La última regla es la más fuerte: Respeto. Al rival, al maestro, a la manada. Deja un mundo mejor del que encontraste."
+Texto: Regla 3 de 3 🐺 Etiqueta a tu manada. #DavaiCombatSports #HonorValorRespeto
