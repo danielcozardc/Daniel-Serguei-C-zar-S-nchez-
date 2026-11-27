@@ -2,6 +2,7 @@
 
 Usage: python3 render.py [reel|feed|teaser|all]
 """
+import math
 import subprocess
 import sys
 from pathlib import Path
@@ -47,6 +48,14 @@ def font(path, size):
     return ImageFont.truetype(path, size)
 
 
+def camera(path, u):
+    for (t0, z0, x0, y0), (t1, z1, x1, y1) in zip(path, path[1:]):
+        if u <= t1:
+            k = ease((u - t0) / (t1 - t0)) if t1 > t0 else 1
+            return z0 + (z1 - z0) * k, x0 + (x1 - x0) * k, y0 + (y1 - y0) * k
+    return path[-1][1:]
+
+
 def ease(x):
     x = max(0.0, min(1.0, x))
     return x * x * (3 - 2 * x)
@@ -54,24 +63,26 @@ def ease(x):
 
 # ---------- segment definitions ----------
 # kind "panel": src, caption, dur, zoom (start, end) and focus (fx0,fy0)->(fx1,fy1) in 0..1
+# path: camera keyframes (time_frac, zoom, fx, fy) in source fractions; shake: time_frac of impact
 STORY = [
     dict(kind="intro", dur=2.6),
-    dict(kind="panel", src="p1", dur=4.2, cap=["MÁS QUE PELEAR,", "UNA FORMA DE VIDA"], z=(1.0, 1.10), f=((0.5, 0.5), (0.55, 0.4))),
-    dict(kind="panel", src="p2", dur=4.2, cap=["PEQUEÑOS PASOS,", "GRANDES GUERREROS"], z=(1.0, 1.10), f=((0.5, 0.5), (0.45, 0.45))),
-    dict(kind="panel", src="p3", dur=4.2, cap=["ENTRENA. APRENDE.", "SUPÉRATE."], z=(1.0, 1.10), f=((0.5, 0.5), (0.6, 0.45))),
-    dict(kind="panel", src="p4", dur=4.2, cap=["MENTE · CUERPO", "ESTRATEGIA"], z=(1.0, 1.10), f=((0.5, 0.5), (0.45, 0.5))),
-    dict(kind="panel", src="p5", dur=4.2, cap=["SALUD · EQUILIBRIO", "CONSTANCIA"], z=(1.0, 1.10), f=((0.5, 0.5), (0.55, 0.45))),
-    dict(kind="panel", src="p6", dur=4.2, cap=["DISCIPLINA HOY,", "UN MEJOR MAÑANA"], z=(1.0, 1.10), f=((0.5, 0.5), (0.5, 0.45))),
-    dict(kind="panel", src="p7", dur=5.6, cap=["PEQUEÑOS GUERREROS,", "GRANDES HISTORIAS"], z=(1.0, 1.0), f=((0.33, 0.5), (0.61, 0.5))),
+    dict(kind="panel", src="p1", dur=4.8, cap=["MÁS QUE PELEAR,", "UNA FORMA DE VIDA"],
+         path=[(0, 1.45, 0.28, 0.32), (0.18, 1.45, 0.28, 0.32), (0.5, 1.45, 0.72, 0.32), (0.68, 1.45, 0.72, 0.32), (1, 1.02, 0.5, 0.5)]),
+    dict(kind="panel", src="p2", dur=4.8, cap=["PEQUEÑOS PASOS,", "GRANDES GUERREROS"], shake=[0.62],
+         path=[(0, 1.45, 0.3, 0.35), (0.2, 1.45, 0.3, 0.35), (0.5, 1.4, 0.8, 0.35), (0.6, 1.4, 0.78, 0.4), (1, 1.02, 0.5, 0.5)]),
+    dict(kind="panel", src="p3", dur=4.8, cap=["ENTRENA. APRENDE.", "SUPÉRATE."], shake=[0.35, 0.7],
+         path=[(0, 1.4, 0.38, 0.3), (0.2, 1.4, 0.38, 0.3), (0.5, 1.4, 0.75, 0.32), (0.65, 1.4, 0.72, 0.35), (1, 1.02, 0.5, 0.5)]),
+    dict(kind="panel", src="p4", dur=4.8, cap=["MENTE · CUERPO", "ESTRATEGIA"], shake=[0.15],
+         path=[(0, 1.45, 0.3, 0.3), (0.22, 1.45, 0.3, 0.3), (0.55, 1.4, 0.82, 0.5), (0.7, 1.4, 0.82, 0.5), (1, 1.02, 0.5, 0.5)]),
+    dict(kind="panel", src="p5", dur=4.8, cap=["SALUD · EQUILIBRIO", "CONSTANCIA"],
+         path=[(0, 1.45, 0.25, 0.3), (0.2, 1.45, 0.25, 0.3), (0.5, 1.4, 0.68, 0.32), (0.68, 1.4, 0.68, 0.32), (1, 1.02, 0.5, 0.5)]),
+    dict(kind="panel", src="p6", dur=4.8, cap=["DISCIPLINA HOY,", "UN MEJOR MAÑANA"], shake=[0.72],
+         path=[(0, 1.45, 0.38, 0.3), (0.2, 1.45, 0.38, 0.3), (0.5, 1.4, 0.78, 0.3), (0.65, 1.4, 0.78, 0.3), (1, 1.05, 0.5, 0.55)]),
+    dict(kind="panel", src="p7", dur=6.0, cap=["PEQUEÑOS GUERREROS,", "GRANDES HISTORIAS"],
+         path=[(0, 1.0, 0.3, 0.5), (0.15, 1.0, 0.3, 0.5), (0.6, 1.0, 0.61, 0.5), (1, 1.0, 0.61, 0.5)]),
     dict(kind="outro", dur=3.4),
 ]
-TEASER = [
-    dict(kind="intro", dur=2.2),
-    dict(kind="panel", src="p2", dur=3.6, cap=["PEQUEÑOS PASOS,", "GRANDES GUERREROS"], z=(1.0, 1.12), f=((0.5, 0.5), (0.45, 0.45))),
-    dict(kind="panel", src="p4", dur=3.6, cap=["MENTE · CUERPO", "ESTRATEGIA"], z=(1.0, 1.12), f=((0.5, 0.5), (0.45, 0.5))),
-    dict(kind="panel", src="p7", dur=5.0, cap=["PEQUEÑOS GUERREROS,", "GRANDES HISTORIAS"], z=(1.0, 1.0), f=((0.33, 0.5), (0.61, 0.5))),
-    dict(kind="outro", dur=3.0),
-]
+TEASER = [STORY[0], STORY[2], STORY[4], STORY[7], STORY[8]]
 
 
 class Layout:
@@ -213,11 +224,16 @@ class Renderer:
             if ph > L.max_panel_h:
                 ph = L.max_panel_h
         aspect = pw / ph
-        p = ease(t / dur)
-        z = seg["z"][0] + (seg["z"][1] - seg["z"][0]) * p
-        (fx0, fy0), (fx1, fy1) = seg["f"]
-        fx = fx0 + (fx1 - fx0) * p
-        fy = fy0 + (fy1 - fy0) * p
+        z, fx, fy = camera(seg["path"], t / dur)
+        # impact: zoom pulse + shake
+        sx = sy = 0.0
+        for st in seg.get("shake", []):
+            dt = t - st * dur
+            if 0 <= dt < 0.4:
+                k = (1 - dt / 0.4) ** 2
+                z *= 1 + 0.07 * k
+                sx += 22 * k * math.sin(dt * 90)
+                sy += 14 * k * math.cos(dt * 77)
         # crop box with aspect of frame, as large as possible / z
         if sw / sh > aspect:
             ch = sh / z
@@ -228,19 +244,28 @@ class Renderer:
         x0 = min(max(fx * sw - cw / 2, 0), sw - cw)
         y0 = min(max(fy * sh - ch / 2, 0), sh - ch)
         panel = src.resize((pw, ph), Image.BICUBIC, box=(x0, y0, x0 + cw, y0 + ch))
-        # entrance: slide up + fade
-        a = ease(t / 0.45)
-        py = L.panel_top + int(40 * (1 - a))
+        # entrance: slide in from alternating side with tilt; idle float
+        idx = self.segs.index(seg)
+        side = -1 if idx % 2 else 1
+        a = ease(t / 0.55)
+        float_y = 7 * math.sin(t * 2.2)
+        rot = side * 7 * (1 - a) + 0.8 * math.sin(t * 1.6 + idx)
+        py = L.panel_top + float_y
         if seg["src"] != "p7":
             py += max(0, (L.max_panel_h - ph) // 2)
-        px = L.margin
-        border = Image.new("RGB", (pw + 8, ph + 8), WHITE)
-        shadow = Image.new("RGBA", (pw + 60, ph + 60), (0, 0, 0, 0))
-        ImageDraw.Draw(shadow).rectangle((30, 40, pw + 30, ph + 40), fill=(0, 0, 0, 170))
+        px = L.margin + side * L.W * 0.9 * (1 - a) + sx
+        py += sy
+        card = Image.new("RGBA", (pw + 8, ph + 8), WHITE + (255,))
+        card.paste(panel, (4, 4))
+        card = card.rotate(rot, resample=Image.BICUBIC, expand=True)
+        cx0 = px + (pw + 8) / 2 - card.width / 2 - 4
+        cy0 = py + (ph + 8) / 2 - card.height / 2 - 4
+        shadow = Image.new("RGBA", (card.width + 60, card.height + 60), (0, 0, 0, 0))
+        shadow.paste((0, 0, 0, 170), (30, 40), card.split()[3].point(lambda v: 255 if v else 0))
         shadow = shadow.filter(ImageFilter.GaussianBlur(18))
-        im.paste(shadow, (px - 30, py - 30), shadow)
-        im.paste(border, (px - 4, py - 4))
-        im.paste(panel, (px, py))
+        im.paste(shadow, (int(cx0) - 30, int(cy0) - 30), shadow)
+        im.paste(card, (int(cx0), int(cy0)), card)
+        py = int(L.panel_top) + (max(0, (L.max_panel_h - ph) // 2) if seg["src"] != "p7" else 0)
         # logo top
         im.paste(self.logo, ((L.W - self.logo.width) // 2, L.logo_y), self.logo.convert("RGBA"))
         # caption
