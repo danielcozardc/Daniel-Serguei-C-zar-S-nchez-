@@ -37,3 +37,11 @@ Llega la temporada de podas 🌳 Te visitamos, lo vemos y te pasamos presupuesto
 > Os los paso sin compromiso: si os gustan, os puedo llevar el Instagram (contenido mensual, textos y planificación) para que os entren más presupuestos, sobre todo de comunidades de vecinos.
 >
 > ¿Os los envío por aquí?
+
+---
+
+## Mensaje para mandar con la propuesta (`propuesta/Propuesta_Instagram_JCM_Jardineria.pdf`)
+
+> Os paso la propuesta con los paquetes 👇 Mi recomendación es el Pro + el dosier para administradores de fincas, porque es lo que más trabajo fijo os puede traer.
+>
+> El primer mes va a mitad de precio y sin permanencia: si no notáis movimiento, lo dejamos y en paz. ¿Os viene bien una llamada de 10 minutos esta semana?
